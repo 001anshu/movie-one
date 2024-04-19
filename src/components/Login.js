@@ -1,11 +1,24 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Header from "./Header";
+import { formValidation } from "../utils/constants";
 
 const Login = () => {
   const [check, setcheck] = useState(1);
+  const email = useRef(null);
+  const password = useRef(null);
+
   const handleclick = () => {
     setcheck(!check);
   };
+  const [errorMessage,setErrorMessage]=useState(null);
+
+  const handleform = () => {
+    const message=formValidation(email.current.value,password.current.value)
+    setErrorMessage(message);
+    console.log(email.current.value);
+    console.log(password);  
+  };
+
   return (
     <div className="bg-black">
       <div className="bg-gradient-to-b from-black">
@@ -17,7 +30,10 @@ const Login = () => {
       </div>
       <Header />
 
-      <div className=" bg-black opacity-75 mx-auto rounded-lg my-48 left-0 right-0 absolute text-white  w-1/4 ">
+      <form
+        onSubmit={(e) => e.preventDefault()}
+        className=" bg-black opacity-75 mx-auto rounded-lg my-48 left-0 right-0 absolute text-white  w-1/4 "
+      >
         <h1 className="text-white text-2xl m-6   font-bold ">
           {check ? "Sign in" : "Sign Up"}
         </h1>
@@ -29,24 +45,32 @@ const Login = () => {
           />
         )}
         <input
+          ref={email}
           placeholder="Email or phone number"
           className=" bg-gray-600 mx-10 my-3 p-2 w-3/4  "
         />
 
         <input
+          ref={password}
           placeholder="password"
           className="   bg-gray-600 my-3 mx-10 p-2 w-3/4"
         />
-
-        <button className="bg-red-600 p-2 my-6 mx-10 text-center px-16 rounded-lg w-3/4">
+        <p className="text-red-500 my-3 mx-10">{errorMessage}</p>
+        <button
+          onClick={handleform}
+          className="bg-red-600 p-2 my-6 mx-10 text-center px-16 rounded-lg w-3/4"
+        >
           {check ? "Sign in" : "sign up"}
         </button>
         <p
           className="my-3 mx-10 p-2 w-3/4 cursor-pointer"
           onClick={handleclick}
-        >{check?"not have a account sign up now":"Already a user sign in now"}
+        >
+          {check
+            ? "not have a account sign up now"
+            : "Already a user sign in now"}
         </p>
-      </div>
+      </form>
     </div>
   );
 };
