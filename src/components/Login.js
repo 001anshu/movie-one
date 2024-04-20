@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
 import Header from "./Header";
 import { formValidation } from "../utils/constants";
+import { getAuth, createUserWithEmailAndPassword ,signInWithEmailAndPassword} from "firebase/auth";
+import { auth } from "../utils/constants";
 
 const Login = () => {
   const [check, setcheck] = useState(1);
@@ -10,13 +12,49 @@ const Login = () => {
   const handleclick = () => {
     setcheck(!check);
   };
-  const [errorMessage,setErrorMessage]=useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const handleform = () => {
-    const message=formValidation(email.current.value,password.current.value)
+    const message = formValidation(email.current.value, password.current.value);
     setErrorMessage(message);
-    console.log(email.current.value);
-    console.log(password);  
+    if (message) return;
+    if (!check) {
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+          console.log(user);
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + " " + errorMessage);
+          // ..
+        });
+    } else {
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log(user)
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + " " + errorMessage);
+
+        });
+    }
   };
 
   return (
@@ -51,6 +89,7 @@ const Login = () => {
         />
 
         <input
+          type="password"
           ref={password}
           placeholder="password"
           className="   bg-gray-600 my-3 mx-10 p-2 w-3/4"
