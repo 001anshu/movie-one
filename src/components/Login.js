@@ -1,13 +1,15 @@
 import React, { useRef, useState } from "react";
 import Header from "./Header";
 import { formValidation } from "../utils/constants";
-import { getAuth, createUserWithEmailAndPassword ,signInWithEmailAndPassword} from "firebase/auth";
+import {  createUserWithEmailAndPassword ,signInWithEmailAndPassword} from "firebase/auth";
 import { auth } from "../utils/constants";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [check, setcheck] = useState(1);
   const email = useRef(null);
   const password = useRef(null);
+  const Navigate=useNavigate();
 
   const handleclick = () => {
     setcheck(!check);
@@ -28,6 +30,7 @@ const Login = () => {
           // Signed up
           const user = userCredential.user;
           console.log(user);
+          Navigate("/browser")
           // ...
         })
         .catch((error) => {
@@ -46,6 +49,7 @@ const Login = () => {
           // Signed in
           const user = userCredential.user;
           console.log(user)
+          Navigate("/browser")
           // ...
         })
         .catch((error) => {
