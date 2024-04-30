@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import Header from "./Header";
-import { formValidation } from "../utils/constants";
+import { formValidation, login_bg_IMG } from "../utils/constants";
 import {  createUserWithEmailAndPassword ,signInWithEmailAndPassword} from "firebase/auth";
 import { auth } from "../utils/constants";
 import { useNavigate } from "react-router-dom";
@@ -29,8 +29,7 @@ const Login = () => {
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user;
-          console.log(user);
-          Navigate("/browser")
+        
           // ...
         })
         .catch((error) => {
@@ -48,8 +47,7 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user)
-          Navigate("/browser")
+       
           // ...
         })
         .catch((error) => {
@@ -66,7 +64,7 @@ const Login = () => {
       <div className="bg-gradient-to-b from-black">
         <img
           className="absolute "
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/9f46b569-aff7-4975-9b8e-3212e4637f16/453ba2a1-6138-4e3c-9a06-b66f9a2832e4/IN-en-20240415-popsignuptwoweeks-perspective_alpha_website_small.jpg"
+          src={login_bg_IMG}
           alt="logo"
         />
       </div>
