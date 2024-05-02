@@ -61,14 +61,15 @@ const Login = () => {
 
   return (
     <div className="bg-black">
-      <div className="bg-gradient-to-b from-black">
+      
+      <Header />
+      <div className="absolute  bg-gradient-to-b from-black">
         <img
-          className="absolute "
+          className=""
           src={login_bg_IMG}
           alt="logo"
         />
       </div>
-      <Header />
 
       <form
         onSubmit={(e) => e.preventDefault()}

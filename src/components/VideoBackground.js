@@ -1,25 +1,26 @@
-import React, { useEffect } from 'react'
-import { API_options } from '../utils/constants'
+import useTrailer from "../hook/useTrailer";
 
-const VideoBackground = ({movieId}) => {
-
-  const fetchMovie=async()=>{
-    const data= await fetch("https://api.themoviedb.org/3/movie/"+movieId+"/videos", API_options);
-    const json=await data.json()
-
-    const trailer=json.results.filter((s)=>
-      s.type=="Trailer"
-    );
-    console.log(trailer[0]);
-
-  }
-  useEffect(()=>{
-    fetchMovie();
-  },[])
+const VideoBackground = (movieId) => {
+  const trailer = useTrailer(movieId);
 
   return (
-    <div ></div>
-  )
-}
+    <div className="absolute z-9 w-screen">
 
-export default VideoBackground
+      <iframe
+        className="w-full aspect-video"
+        src={
+          "https://www.youtube.com/embed/" +
+          trailer?.trailerKey +
+          "?.&autoplay=1&mute=1"
+        }
+        
+        title="YouTube video player"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+ 
+      
+      ></iframe>
+    </div>
+  );
+};
+
+export default VideoBackground;

@@ -14,28 +14,30 @@ const Header = () => {
   const Navigate = useNavigate();
   const dispatch = useDispatch();
 
-  useEffect(()=>{
+  useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/auth.user
-        const {uid,displayName,phoneNumber,email} = user;
-        dispatch(adduser({
-          uid:uid,
-          name:displayName,
-          number:phoneNumber,
-          Email:email
-        }));
+        const { uid, displayName, phoneNumber, email } = user;
+        dispatch(
+          adduser({
+            uid: uid,
+            name: displayName,
+            number: phoneNumber,
+            Email: email,
+          })
+        );
         Navigate("/browser");
         // ...
       } else {
-        dispatch(removeuser)
+        dispatch(removeuser);
         Navigate("/");
         // User is signed out
         // ...
       }
     });
-  },[])
+  }, []);
 
   const handleclick = () => {
     signOut(auth)
@@ -51,10 +53,9 @@ const Header = () => {
       });
   };
   return (
-    <div className=" absolute w-full flex justify-between  bg-gradient-to-b from-black items-center">
-      <div>
-        <img className="   h-14  px-8 " src={logo} alt="logo" />
-      </div>
+    <div className=" absolute w-full flex px-8 py-2 z-10 justify-between  bg-gradient-to-b from-black ">
+      <img className="   h-14  px-8 " src={logo} alt="logo" />
+
       <div>
         {user1 && (
           <button
