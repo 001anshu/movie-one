@@ -4,7 +4,7 @@ const VideoBackground = (movieId) => {
   const trailer = useTrailer(movieId);
 
   return (
-    <div className="absolute z-9 w-screen">
+    <div className="z-9 w-screen">
 
       <iframe
         className="w-full aspect-video"

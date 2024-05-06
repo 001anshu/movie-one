@@ -10,7 +10,7 @@ const useNowPlayingMovies=()=>{
       "https://api.themoviedb.org/3/movie/now_playing?page=1",API_options
     )
     const json=await api_data.json();
-    // console.log(json.results);
+    console.log(json);
     dispatch(addnowPlayingMovie(json.results));
   }
   useEffect(()=>{
