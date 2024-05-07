@@ -8,7 +8,7 @@ export const formValidation=(email,password)=>{
   else if(!isValidPassword)return("Your password must contain at least one capital letter, one small letter, one special character, one digit, and be more than 7 characters long ");
   else return(null);
 }
-export const logo = "https://icons8.com/icon/20519/netflix"
+export const logo = "https://img.icons8.com/?size=256&id=20519&format=png"
 export const auth =getAuth(app);
 export const login_bg_IMG="https://assets.nflxext.com/ffe/siteui/vlv3/058eee37-6c24-403a-95bd-7d85d3260ae1/e10ba8a6-b96a-4308-bee4-76fab1ebd6ca/IN-en-20240422-POP_SIGNUP_TWO_WEEKS-perspective_WEB_db9348f2-4d68-4934-b495-6d9d1be5917e_large.jpg"
 export const API_options = {

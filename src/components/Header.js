@@ -54,7 +54,7 @@ const Header = () => {
   };
   return (
     <div className=" absolute w-full flex px-8 py-2 z-10 justify-between  bg-gradient-to-b from-black ">
-      <img className="   h-14  px-8 " src={logo} alt="logo" />
+      <img className="   h-28  px-8 " src={logo} alt="logo" />
 
       <div>
         {user1 && (
