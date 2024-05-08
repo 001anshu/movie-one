@@ -6,25 +6,24 @@ import MoviesContainer from "./MoviesContainer";
 import useTopRated from "../hook/useTopRated";
 import usePopular from "../hook/usePopular";
 import useUpcoming from "../hook/useUpcoming";
-
-
-
+import { useSelector } from "react-redux";
+import GptSearchComp from "./GptSearchComp";
 
 const Browser = () => {
+  const gpt = useSelector((store) => store?.gpt?.checkGpt);
+
   useNowPlayingMovies();
   useTopRated();
   usePopular();
   useUpcoming();
-  
-
-
 
   return (
     <div>
       <Header />
-      <MainContainer/>
-      <MoviesContainer/>
-  
+      {gpt?
+        <><GptSearchComp/> </>:<><MainContainer />
+        <MoviesContainer /></>
+      }
      
     </div>
   );

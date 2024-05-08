@@ -5,6 +5,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 
 
 
+
 const Body = () => {
 
   
@@ -16,7 +17,8 @@ const Body = () => {
     {
       path:"/browser",
       element:<Browser/>
-    }
+    },
+    
   ])
 
   

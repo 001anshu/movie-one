@@ -7,12 +7,16 @@ import { useNavigate } from "react-router-dom";
 import { getAuth } from "firebase/auth";
 import { signOut } from "firebase/auth";
 import { removeuser } from "../utils/userSlice";
+import { checkGptSearch } from "../utils/GptSearchSlice";
 
 const Header = () => {
+  
   const user1 = useSelector((store) => store.user);
   const auth = getAuth();
   const Navigate = useNavigate();
   const dispatch = useDispatch();
+  const gpt=useSelector((store)=>store?.gpt?.checkGpt)
+ 
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -38,7 +42,9 @@ const Header = () => {
       }
     });
   }, []);
-
+  const handleCheck=()=>{
+    dispatch(checkGptSearch())
+  }
   const handleclick = () => {
     signOut(auth)
       .then(() => {
@@ -58,15 +64,21 @@ const Header = () => {
 
       <div>
         {user1 && (
-          <button
-            className="bg bg-red-500 text-white
-       cursor-pointer m-2
-       "
-            onClick={handleclick}
-          >
-            <p>Hey </p>
-            sign out
-          </button>
+          <>
+          <div className="">
+            <button className="bg-blue-300 text-white p-3  m-6  rounded-xl " onClick={handleCheck}>
+              {gpt?"Home":"Movies Gpt"}
+              
+            </button>
+            <button
+              className="bg bg-red-500 rounded-md p-3 m-6  text-white cursor-pointer "
+              onClick={handleclick}
+            >
+              Hey 
+              sign out
+            </button>
+            </div>
+          </>
         )}
       </div>
     </div>

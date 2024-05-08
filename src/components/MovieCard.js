@@ -5,7 +5,7 @@ const MovieCard = ({ poster_path }) => {
   // console.log(poster_path)
   return (
    
-      <img className="rounded-lg m-2" src={TMDM_IMG + poster_path} alt="logo" />
+      <img className="rounded-lg m-2 transform hover:scale-105 transition duration-200" src={TMDM_IMG + poster_path} alt="logo" />
     
   );
 };
