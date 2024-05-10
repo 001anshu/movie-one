@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { API_options } from "../utils/constants";
 
 const useTrailer = ({movieId}) => {
-  console.log(movieId);
+  // console.log(movieId);
 
   const[trailerKey,settrailerKey]=useState(null);
   const fetchMovie = async () => {
@@ -19,7 +19,7 @@ const useTrailer = ({movieId}) => {
   useEffect(() => {
     fetchMovie();
   }, []);
-  console.log(trailerKey)
+  // console.log(trailerKey)
   return (
     
     {trailerKey}

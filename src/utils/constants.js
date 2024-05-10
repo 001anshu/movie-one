@@ -10,7 +10,7 @@ export const formValidation=(email,password)=>{
 }
 export const logo = "https://img.icons8.com/?size=256&id=20519&format=png"
 export const auth =getAuth(app);
-export const login_bg_IMG="https://assets.nflxext.com/ffe/siteui/vlv3/058eee37-6c24-403a-95bd-7d85d3260ae1/e10ba8a6-b96a-4308-bee4-76fab1ebd6ca/IN-en-20240422-POP_SIGNUP_TWO_WEEKS-perspective_WEB_db9348f2-4d68-4934-b495-6d9d1be5917e_large.jpg"
+export const login_bg_IMG="https://assets.nflxext.com/ffe/siteui/vlv3/31ef2c5c-3d08-47d5-b7a9-f29e4f4f893d/1ac1cee7-5580-4cfa-b701-99d1a8f2d148/IN-en-20240506-POP_SIGNUP_TWO_WEEKS-perspective_WEB_ebbef551-d229-4865-8cdc-fb00f8960227_large.jpg"
 export const API_options = {
  
     method: 'GET',
@@ -21,3 +21,4 @@ export const API_options = {
 };
 export const TMDM_IMG="https://image.tmdb.org/t/p/w200/";
   
+export const AiApiKey="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"

@@ -10,3 +10,5 @@
 02-05
   borwser video started playing on backgrond
   
+10-05 
+  tomorrow i will create the movies detail page

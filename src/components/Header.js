@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
 import { useEffect } from "react";
 import { adduser } from "../utils/userSlice";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getAuth } from "firebase/auth";
 import { signOut } from "firebase/auth";
 import { removeuser } from "../utils/userSlice";
 import { checkGptSearch } from "../utils/GptSearchSlice";
+import GptSearchComp from "./GptSearchComp";
 
 const Header = () => {
   
@@ -65,7 +66,9 @@ const Header = () => {
       <div>
         {user1 && (
           <>
-          <div className="">
+          <div className="" >
+           
+          
             <button className="bg-blue-300 text-white p-3  m-6  rounded-xl " onClick={handleCheck}>
               {gpt?"Home":"Movies Gpt"}
               

@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 const MoviesContainer = () => {
   const movies = useSelector((store) => store?.movie);
-  console.log(movies);
+  // console.log(movies);
   return (
     <div className="bg-black">
       <div className="-mt-64 relative">
@@ -12,6 +12,7 @@ const MoviesContainer = () => {
         <MovieList title={"Top Rated"} movies={movies?.TopRated} />
         <MovieList title={"Popular"} movies={movies?.Popular} />
         <MovieList title={"Upcoming"} movies={movies?.Upcoming} />
+        {/* {console.log(movies.Upcoming)} */}
 
       </div>
     </div>
