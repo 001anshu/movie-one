@@ -21,4 +21,3 @@ export const API_options = {
 };
 export const TMDM_IMG="https://image.tmdb.org/t/p/w200/";
   
-export const AiApiKey="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"
