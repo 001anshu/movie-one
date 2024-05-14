@@ -22,8 +22,6 @@ const Header = () => {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/auth.user
         const { uid, displayName, phoneNumber, email } = user;
         dispatch(
           adduser({
@@ -33,7 +31,9 @@ const Header = () => {
             Email: email,
           })
         );
-        Navigate("/browser");
+        if (window.location.pathname === "/") {
+          Navigate("/browser");
+        }
         // ...
       } else {
         dispatch(removeuser);
@@ -50,7 +50,7 @@ const Header = () => {
     signOut(auth)
       .then(() => {
         dispatch(removeuser());
-        Navigate("/");
+        // Navigate("/");
 
         // Sign-out successful.
       })

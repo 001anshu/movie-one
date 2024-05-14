@@ -7,7 +7,7 @@ const usePopular=()=>{
   const dispatch=useDispatch();
   const getPopular=async()=>{
     const api_data=await fetch(
-      "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1",API_options
+      "https://api.themoviedb.org/3/movie/popular?language=hindi&region=ISO-9001",API_options
     )
     const json=await api_data.json();
     // console.log(json.results);

@@ -13,7 +13,7 @@ const useTrailer = ({movieId}) => {
     const json = await data.json();
 
     const trailer = json.results.filter((s) => s.type == "Trailer");
-    // console.log(trailer[0]);
+    console.log(trailer);
     settrailerKey(trailer[0].key);
   };
   useEffect(() => {

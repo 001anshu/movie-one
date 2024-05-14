@@ -19,6 +19,6 @@ export const API_options = {
       Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmZjZiOWJkZThhZGMwMTllZTUxNDgxNjUyODAxM2U5YyIsInN1YiI6IjY2MmM5YzZmYTE5OWE2MDEyODcyMDU5NSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.v4xD83EDYJopSUel9IMgM2dyTLCFnNkT1I4HHbZ5PKw'
     }
 };
-export const TMDM_IMG="https://image.tmdb.org/t/p/w200/";
+export const TMDM_IMG="https://image.tmdb.org/t/p/w500/";
   
 export const AiApiKey="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"
