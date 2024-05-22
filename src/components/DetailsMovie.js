@@ -4,9 +4,16 @@ import Header from "./Header";
 import { useParams } from "react-router-dom";
 import GeneresBtn from "./GeneresBtn";
 
+import Trailer from "./Trailer";
+
 const DetailsMovie = () => {
   const movieId = useParams();
+  // const trailer = useTrailer(movieId);
   const [data, setdata] = useState();
+  const [showTrailer, setshowTrailer] = useState(false);
+  const handleImgClick = () => {
+    setshowTrailer(!showTrailer);
+  };
   useEffect(() => {
     const details = async () => {
       const api = await fetch(
@@ -16,7 +23,7 @@ const DetailsMovie = () => {
         API_options
       );
       const json = await api.json();
-      console.log(json);
+      // console.log(json);
       setdata(json);
     };
     details();
@@ -36,30 +43,39 @@ const DetailsMovie = () => {
         )}
 
         {/* Content */}
-        <div className="absolute inset-0  flex justify-center items-center pt-44 text-white">
-          {data && (
-            <>
-              {/* Movie poster */}
-              <img
-                className="rounded-lg w-1/5 md:ml-52 md:mr-24  transform hover:scale-105 transition duration-50 mb-5"
-                src={TMDM_IMG + data?.poster_path}
-                alt="movie poster"
-              />
-              {/* Movie name */}
-              <div>
-                <h1 className="p-3 text-xl md:text-5xl lg:text-5xl  font-bold ">
-                  {data.original_title}
-                </h1>
-                <div className="flex gap-4 p-4">
-                  {data?.genres?.map((mp) => (
-                    <GeneresBtn name={mp?.name} />
-                  ))}
+        <div className="">
+          {showTrailer ? (
+            <div className="absolute inset-0  flex justify-center items-center pt-1/7 text-white">
+              <Trailer movieId={movieId} removeTrailer={handleImgClick} />
+            </div>
+          ) : (
+            data && (
+              <>
+                <div className="absolute inset-0  flex justify-center items-center pt-44 text-white">
+                  {" "}
+                  <img
+                    className="rounded-lg w-1/5 md:ml-52 md:mr-24 cursor-pointer transform hover:scale-105 transition duration-50 mb-5"
+                    onClick={handleImgClick}
+                    src={TMDM_IMG + data?.poster_path}
+                    alt="movie poster"
+                  />
+                  {/* Movie name */}
+                  <div>
+                    <h1 className="p-3 text-xl md:text-5xl lg:text-5xl  font-bold ">
+                      {data.original_title}
+                    </h1>
+                    <div className="flex gap-4 p-4">
+                      {data?.genres?.map((mp) => (
+                        <GeneresBtn name={mp?.name} />
+                      ))}
+                    </div>
+                    <div className=" w-1/2">
+                      <span>{data?.overview}</span>
+                    </div>
+                  </div>
                 </div>
-                <div className=" w-1/2">
-                  <span>{data?.overview}</span>
-                </div>
-              </div>
-            </>
+              </>
+            )
           )}
         </div>
       </div>

@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import Header from "./Header";
 import { API_options, login_bg_IMG } from "../utils/constants";
 import openai from "./openai";
-
+import { Link } from "react-router-dom";
 import MovieList from "./MovieList";
 import MovieCard from "./MovieCard";
 
@@ -10,7 +10,6 @@ const GptSearchComp = () => {
   const [movieData, setMovieData] = useState(null);
   const search = useRef(null);
   const handleForm = async () => {
-    
     const api_data = await fetch(
       "https://api.themoviedb.org/3/search/movie?query=" +
         search?.current?.value +
@@ -44,17 +43,28 @@ const GptSearchComp = () => {
             Search
           </button>
         </form>
-        <h1 className="text-white text-2xl font-bold p-4">Movies related to  '{search?.current?.value}'</h1>
+        <h1 className="text-white text-2xl font-bold p-4">
+          Movies related to '{search?.current?.value}'
+        </h1>
         <div className="flex  overflow-x-scroll no-scrollbar">
-         
-        <div className="flex ">
-          
-          {movieData != null && movieData.map((movie) => (
-            <MovieCard key={movie.id} poster_path={movie.poster_path} />
-          ))}
-
-          {/* <MovieList title={search} movies={movieData} /> */}
-        </div>
+          {movieData != null && (
+            <div className="flex  ">
+              {movieData.map((movie) => (
+                <Link
+                  to={"/moviedetails/" + movie.id}
+                  className="w-40 m-2"
+                  key={movie.id}
+                >
+                  <MovieCard
+                    key={movie.id}
+                    poster_path={movie.poster_path}
+                    id={movie?.id}
+                  />
+                </Link>
+                // <MovieCard key={movie.id} poster_path={movie.poster_path}  />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>
